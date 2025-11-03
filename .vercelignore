@@ -1,0 +1,29 @@
+node_modules
+.git
+.env
+.DS_Store
+*.log
+.vercel
+
+# Arquivos grandes desnecessários
+*.zip
+*.tar.gz
+__MACOSX
+Download-on-the-App-Store
+Download-on-the-App-Store.zip
+Google Play Badge guidelines
+Google Play Badge guidelines.zip
+redeibelieve-website.tar.gz
+
+# Documentação
+CHANGELOG_PAGE.md
+CLAUDE.md
+DEPLOY_HOSTINGER.md
+DEPLOY_VERCEL.md
+
+# Build local (Vercel fará próprio build)
+build
+
+# Testes
+**/*.test.js
+**/*.spec.js

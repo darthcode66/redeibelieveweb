@@ -1,0 +1,482 @@
+/* Importar fonte Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+/* Paleta de cores da identidade visual */
+:root {
+  --azul-royal: #1E1C7F;
+  --verde: #24B36B;
+  --laranja: #FFA500;
+  --azul-secundario: #2C5F7D;
+  --branco: #ffffff;
+  --cinza-claro: #f8f9fa;
+  --cinza-medio: #6c757d;
+  --cinza-escuro: #495057;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.Support {
+  min-height: 100vh;
+  background: var(--cinza-claro);
+}
+
+/* Header da página de suporte */
+.support-header {
+  background: linear-gradient(135deg, var(--azul-royal) 0%, var(--azul-secundario) 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.support-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
+  background-size: 50px 50px;
+}
+
+.support-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.support-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  position: relative;
+  z-index: 2;
+}
+
+/* Navbar customizada */
+.navbar {
+  padding: 1rem 0;
+  background: var(--branco) !important;
+  box-shadow: 0 2px 10px rgba(30, 28, 127, 0.1);
+}
+
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+  transform: scale(1.05);
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+  color: var(--azul-royal) !important;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--verde) !important;
+}
+
+/* Tabs de navegação */
+.support-tabs {
+  display: flex;
+  justify-content: center;
+  background: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 3rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--cinza-medio);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tab-button:hover {
+  background: var(--cinza-claro);
+  color: var(--azul-royal);
+}
+
+.tab-button.active {
+  background: var(--azul-royal);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(30, 28, 127, 0.3);
+}
+
+/* Seção de formulário de ticket */
+.ticket-form-section {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.ticket-form-section h2 {
+  color: var(--azul-royal);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.ticket-form .form-label {
+  font-weight: 600;
+  color: var(--azul-royal);
+  margin-bottom: 0.5rem;
+}
+
+.ticket-form .form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.ticket-form .form-control:focus {
+  border-color: var(--verde);
+  box-shadow: 0 0 0 0.2rem rgba(36, 179, 107, 0.25);
+  outline: none;
+}
+
+.ticket-form select.form-control {
+  cursor: pointer;
+}
+
+.ticket-form textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, var(--verde), #20a058);
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(36, 179, 107, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(36, 179, 107, 0.4);
+}
+
+/* Seção de tickets */
+.my-tickets-section {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.my-tickets-section h2 {
+  color: var(--azul-royal);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.tickets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ticket-card {
+  border: 2px solid #e9ecef;
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.ticket-card:hover {
+  border-color: var(--verde);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.ticket-id {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  color: var(--azul-royal);
+  background: var(--cinza-claro);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.ticket-badges {
+  display: flex;
+  gap: 10px;
+}
+
+.status-badge, .priority-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-open { background: #e3f2fd; color: #1976d2; }
+.status-progress { background: #fff3e0; color: #f57c00; }
+.status-resolved { background: #e8f5e8; color: #388e3c; }
+.status-closed { background: #f3e5f5; color: #7b1fa2; }
+
+.priority-low { background: #f1f8e9; color: #689f38; }
+.priority-medium { background: #fff8e1; color: #ffa000; }
+.priority-high { background: #ffebee; color: #d32f2f; }
+.priority-critical { background: #fce4ec; color: #c2185b; }
+
+.ticket-card h4 {
+  color: var(--azul-royal);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.ticket-meta {
+  display: flex;
+  gap: 20px;
+  color: var(--cinza-medio);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.ticket-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-outline-primary, .btn-outline-secondary {
+  border-width: 2px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary {
+  color: var(--azul-royal);
+  border-color: var(--azul-royal);
+}
+
+.btn-outline-primary:hover {
+  background: var(--azul-royal);
+  border-color: var(--azul-royal);
+}
+
+/* Seção FAQ */
+.faq-section {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.faq-section h2 {
+  color: var(--azul-royal);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.faq-item {
+  border: 2px solid #e9ecef;
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: var(--verde);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.faq-item h4 {
+  color: var(--azul-royal);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.faq-item p {
+  color: var(--cinza-escuro);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Seção de contato */
+.contact-section {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.contact-section h2 {
+  color: var(--azul-royal);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.contact-card {
+  background: var(--cinza-claro);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  height: 100%;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.contact-card:hover {
+  border-color: var(--verde);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.contact-card h4 {
+  color: var(--azul-royal);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.contact-card p {
+  color: var(--azul-secundario);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card small {
+  color: var(--cinza-medio);
+}
+
+.business-hours {
+  background: var(--cinza-claro);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.business-hours h3 {
+  color: var(--azul-royal);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.hours-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  color: var(--cinza-escuro);
+  font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .support-header h1 {
+    font-size: 2rem;
+  }
+
+  .support-header p {
+    font-size: 1rem;
+  }
+
+  .support-tabs {
+    flex-direction: column;
+  }
+
+  .tab-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .ticket-form-section,
+  .my-tickets-section,
+  .faq-section,
+  .contact-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .ticket-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .ticket-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ticket-actions {
+    justify-content: center;
+  }
+
+  .contact-card {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .support-header {
+    padding: 60px 0;
+  }
+
+  .support-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .navbar-brand img {
+    width: 120px;
+  }
+}
