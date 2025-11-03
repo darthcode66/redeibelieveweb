@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import logo from './assets/logo_redeibelieve.png';
 import googlePlayBadge from './assets/google-play-badge.png';
@@ -6,6 +6,28 @@ import appStoreBadge from './assets/app-store-badge.svg';
 import { Link } from 'react-router-dom';
 
 function Home() {
+  const [billingPeriod, setBillingPeriod] = useState('monthly');
+
+  const calculateSavings = (monthlyPrice) => {
+    if (billingPeriod === 'annual') {
+      const annualPrice = monthlyPrice * 10; // 12 meses - 2 meses grátis
+      const monthlySavings = (monthlyPrice * 12) - annualPrice;
+      return {
+        price: annualPrice,
+        savings: monthlySavings,
+        monthlyEquivalent: (annualPrice / 12).toFixed(0)
+      };
+    }
+    return {
+      price: monthlyPrice,
+      savings: 0,
+      monthlyEquivalent: monthlyPrice
+    };
+  };
+
+  const proPlan = calculateSavings(149);
+  const businessPlan = calculateSavings(499);
+
   return (
     <div className="Home">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,6 +45,9 @@ function Home() {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#features">Funcionalidades</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#pricing">Preços</a>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/changelog">Changelog</Link>
@@ -45,11 +70,15 @@ function Home() {
             <p className="lead">🎯 Clube de Vantagens que Conecta Pessoas e Negócios<br/>através de Ofertas e Descontos Exclusivos</p>
             <div className="coming-soon">
               <div className="mb-4">
-                <a href="#features" className="cta-button">
-                  ✨ Conheça as Funcionalidades
+                <a href="#pricing" className="cta-button cta-primary">
+                  💰 Ver Planos e Preços
+                </a>
+                <a href="#features" className="cta-button cta-secondary">
+                  ✨ Conhecer Funcionalidades
                 </a>
               </div>
-              <h3>🚀 Em Breve nas Lojas</h3>
+              <p className="download-note">📱 Baixe o app gratuitamente e comece a economizar hoje!</p>
+              <h3>🚀 Disponível nas Lojas</h3>
               <div className="store-logos">
                 <img src={googlePlayBadge} alt="Baixar na Google Play Store" width="250" />
                 <img src={appStoreBadge} alt="Baixar na Apple App Store" width="250" />
@@ -137,6 +166,190 @@ function Home() {
                     expandindo seu alcance no mercado B2B e fortalecendo a cadeia comercial.
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" className="pricing-section">
+        <div className="container">
+          <h2 className="text-center">💰 Planos e Preços</h2>
+          <p className="text-center subtitle">Escolha o plano ideal para impulsionar seu negócio</p>
+
+          {/* Billing Period Toggle */}
+          <div className="billing-toggle text-center mb-5">
+            <button
+              className={`billing-btn ${billingPeriod === 'monthly' ? 'active' : ''}`}
+              onClick={() => setBillingPeriod('monthly')}
+            >
+              Mensal
+            </button>
+            <button
+              className={`billing-btn ${billingPeriod === 'annual' ? 'active' : ''}`}
+              onClick={() => setBillingPeriod('annual')}
+            >
+              Anual
+              <span className="badge-save">Economize até 17%</span>
+            </button>
+          </div>
+
+          <div className="row justify-content-center">
+            {/* Plano Gratuito */}
+            <div className="col-md-6 col-lg-4 mb-4">
+              <div className="pricing-card">
+                <div className="pricing-badge">Sempre Gratuito</div>
+                <div className="pricing-icon">🎁</div>
+                <h3>Plano Gratuito</h3>
+                <div className="pricing-price">
+                  <span className="price-currency">R$</span>
+                  <span className="price-amount">0</span>
+                  <span className="price-period">/mês</span>
+                </div>
+                <p className="pricing-description">Perfeito para começar a divulgar suas ofertas</p>
+                <ul className="pricing-features">
+                  <li>✅ Criar ofertas ilimitadas</li>
+                  <li>✅ Ofertas normais e relâmpago</li>
+                  <li>✅ Editar e pausar ofertas</li>
+                  <li>✅ Estatísticas básicas</li>
+                  <li>✅ Perfil da empresa</li>
+                  <li>❌ Ofertas em destaque</li>
+                  <li>❌ Analytics avançados</li>
+                  <li>❌ Badge premium</li>
+                </ul>
+                <a href="#contact" className="pricing-button btn-free">
+                  Começar Grátis
+                </a>
+              </div>
+            </div>
+
+            {/* Plano PRO - Recomendado */}
+            <div className="col-md-6 col-lg-4 mb-4">
+              <div className="pricing-card popular">
+                <div className="pricing-badge popular-badge">🌟 Mais Popular</div>
+                <div className="pricing-icon">⭐</div>
+                <h3>Plano PRO</h3>
+                <div className="pricing-price">
+                  <span className="price-currency">R$</span>
+                  <span className="price-amount">
+                    {billingPeriod === 'monthly' ? '149' : proPlan.monthlyEquivalent}
+                  </span>
+                  <span className="price-period">/mês</span>
+                </div>
+                {billingPeriod === 'annual' && (
+                  <div className="pricing-savings">
+                    💰 R$ {proPlan.price.toLocaleString('pt-BR')}/ano - Economize R$ {proPlan.savings}!
+                  </div>
+                )}
+                {billingPeriod === 'monthly' && (
+                  <div className="pricing-note">Ou R$ 1.490/ano (economize R$ 298)</div>
+                )}
+                <p className="pricing-description">Para quem quer mais visibilidade e resultados</p>
+                <ul className="pricing-features">
+                  <li>✅ <strong>Tudo do plano Gratuito</strong></li>
+                  <li>✅ <strong>5 ofertas em destaque/mês</strong></li>
+                  <li>✅ Badge "Loja Verificada" 🏅</li>
+                  <li>✅ Analytics avançados</li>
+                  <li>✅ Prioridade na busca</li>
+                  <li>✅ Suporte prioritário</li>
+                  <li>✅ Relatórios de desempenho</li>
+                  <li>✅ Insights de público</li>
+                </ul>
+                <a href="#contact" className="pricing-button btn-annual">
+                  Assinar Plano PRO
+                </a>
+              </div>
+            </div>
+
+            {/* Plano Business */}
+            <div className="col-md-6 col-lg-4 mb-4">
+              <div className="pricing-card">
+                <div className="pricing-badge">Para Empresas</div>
+                <div className="pricing-icon">🚀</div>
+                <h3>Plano Business</h3>
+                <div className="pricing-price">
+                  <span className="price-currency">R$</span>
+                  <span className="price-amount">
+                    {billingPeriod === 'monthly' ? '499' : businessPlan.monthlyEquivalent}
+                  </span>
+                  <span className="price-period">/mês</span>
+                </div>
+                {billingPeriod === 'annual' && (
+                  <div className="pricing-savings">
+                    💎 R$ {businessPlan.price.toLocaleString('pt-BR')}/ano - Economize R$ {businessPlan.savings}!
+                  </div>
+                )}
+                {billingPeriod === 'monthly' && (
+                  <div className="pricing-note">Ou R$ 4.990/ano (economize R$ 998)</div>
+                )}
+                <p className="pricing-description">Solução completa para redes e múltiplas lojas</p>
+                <ul className="pricing-features">
+                  <li>✅ <strong>Tudo do plano PRO</strong></li>
+                  <li>✅ <strong>Ofertas destaque ilimitadas</strong></li>
+                  <li>✅ Até 5 localizações (lojas)</li>
+                  <li>✅ Publicidade segmentada</li>
+                  <li>✅ API de integração</li>
+                  <li>✅ Dashboard customizado</li>
+                  <li>✅ Gerente de conta dedicado</li>
+                  <li>✅ Consultoria de marketing</li>
+                </ul>
+                <a href="#contact" className="pricing-button btn-monthly">
+                  Falar com Especialista
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="pricing-footer text-center">
+            <p><strong>🎯 Recursos À La Carte</strong> (para quem está no Plano Gratuito):</p>
+            <p>
+              1 Oferta em Destaque (3 dias): <strong>R$ 79</strong> •
+              Pacote 3 Ofertas: <strong>R$ 199</strong> •
+              Pacote 10 Ofertas: <strong>R$ 590</strong>
+            </p>
+            <p className="mt-3">
+              <em>💳 Aceitamos todas as formas de pagamento. Cancele quando quiser, sem multas.</em>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="faq-section">
+        <div className="container">
+          <h2 className="text-center">❓ Perguntas Frequentes sobre Preços</h2>
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              <div className="faq-item">
+                <h5>💳 Quais formas de pagamento vocês aceitam?</h5>
+                <p>Aceitamos cartão de crédito, débito, PIX, boleto bancário e transferência. Para planos anuais, oferecemos desconto adicional no pagamento à vista.</p>
+              </div>
+              <div className="faq-item">
+                <h5>🔄 Posso cancelar minha assinatura a qualquer momento?</h5>
+                <p>Sim! Você pode cancelar quando quiser, sem multas ou taxas. Se cancelar no meio do mês, você continua com acesso até o fim do período pago.</p>
+              </div>
+              <div className="faq-item">
+                <h5>📊 O que são "ofertas em destaque"?</h5>
+                <p>Ofertas em destaque aparecem no topo dos resultados de busca e na página inicial do app por 3 dias, aumentando sua visibilidade em até 10x comparado a ofertas normais.</p>
+              </div>
+              <div className="faq-item">
+                <h5>🎁 O plano gratuito tem alguma limitação de tempo?</h5>
+                <p>Não! O plano gratuito é <strong>100% gratuito para sempre</strong>. Você pode criar ofertas ilimitadas sem pagar nada. Recursos premium são opcionais.</p>
+              </div>
+              <div className="faq-item">
+                <h5>🏪 Posso ter múltiplas lojas em um único plano?</h5>
+                <p>Sim! No <strong>Plano Business</strong> você pode gerenciar até 5 localizações diferentes. Cada loja pode criar ofertas independentemente.</p>
+              </div>
+              <div className="faq-item">
+                <h5>📈 Vocês cobram comissão sobre as vendas?</h5>
+                <p>Atualmente <strong>não cobramos comissão</strong> sobre vendas ou resgates de ofertas. Você paga apenas a assinatura mensal ou recursos avulsos.</p>
+              </div>
+              <div className="faq-item">
+                <h5>🔼 Posso fazer upgrade ou downgrade do plano?</h5>
+                <p>Sim! Você pode mudar de plano a qualquer momento. No upgrade, cobramos apenas a diferença proporcional. No downgrade, o crédito é usado no próximo mês.</p>
+              </div>
+              <div className="faq-item">
+                <h5>🆓 Existe trial gratuito dos planos pagos?</h5>
+                <p>Sim! Oferecemos <strong>14 dias grátis</strong> do Plano PRO para novos usuários. Não é necessário cartão de crédito para começar o trial.</p>
               </div>
             </div>
           </div>

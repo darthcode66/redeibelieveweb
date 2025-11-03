@@ -488,6 +488,60 @@ img[loaded] {
   margin-bottom: 3rem;
 }
 
+/* Billing Toggle */
+.billing-toggle {
+  display: inline-flex;
+  background: #e9ecef;
+  padding: 6px;
+  border-radius: 50px;
+  gap: 8px;
+  margin: 0 auto 3rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.billing-btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #6c757d;
+  position: relative;
+}
+
+.billing-btn:hover {
+  color: var(--azul-royal);
+}
+
+.billing-btn.active {
+  background: linear-gradient(45deg, var(--azul-royal), var(--azul-secundario));
+  color: white;
+  box-shadow: 0 4px 15px rgba(30, 28, 127, 0.3);
+}
+
+.badge-save {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--laranja);
+  margin-top: 2px;
+}
+
+.billing-btn.active .badge-save {
+  color: var(--laranja);
+}
+
+.pricing-note {
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
 .pricing-card {
   background: var(--branco);
   border-radius: 25px;
@@ -705,6 +759,49 @@ img[loaded] {
   font-size: 0.95rem;
   opacity: 0.9;
   font-weight: 500;
+}
+
+/* ========== SEÇÃO DE FAQ ========== */
+.faq-section {
+  padding: 80px 0;
+  background: var(--cinza-claro);
+}
+
+.faq-section h2 {
+  color: var(--azul-royal);
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.faq-item {
+  background: var(--branco);
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.faq-item:hover {
+  transform: translateX(5px);
+  border-left-color: var(--verde);
+  box-shadow: 0 8px 25px rgba(36, 179, 107, 0.15);
+}
+
+.faq-item h5 {
+  color: var(--azul-royal);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.faq-item p {
+  color: #495057;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0;
 }
 
 /* Responsividade para preços */
