@@ -92,9 +92,9 @@ function Home() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6">
-              <h2>🏢 Sobre o <span className="notranslate">Rede I Believe</span></h2>
+              <h2>🏢 Sobre <span className="notranslate">a Rede I Believe</span></h2>
               <p>
-                O <strong className="notranslate">Rede I Believe</strong> é uma plataforma inovadora que revoluciona o conceito de clube de vantagens.
+                <span className="notranslate">A Rede I Believe</span> é uma plataforma inovadora que revoluciona o conceito de clube de vantagens.
                 Conectamos compradores, lojistas e fornecedores em um ecossistema único de descontos e ofertas exclusivas.
               </p>
               <p>
