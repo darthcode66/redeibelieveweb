@@ -67,7 +67,7 @@ function Home() {
         <div className="container">
           <div className="hero-content">
             <h1 className="display-4 notranslate">Rede I Believe</h1>
-            <p className="lead">🎯 Clube de Vantagens que Conecta Pessoas e Negócios<br/>através de Ofertas e Descontos Exclusivos</p>
+            <p className="lead">🎯 Clube de Vantagens que conecta Pessoas e Negócios através de Ofertas e Descontos Exclusivos.</p>
             <div className="coming-soon">
               <div className="mb-4">
                 <a href="#pricing" className="cta-button cta-primary">
