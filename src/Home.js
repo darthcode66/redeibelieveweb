@@ -88,14 +88,12 @@ function Home() {
               <p className="download-note"><FaMobileAlt className="me-2" />Baixe o app gratuitamente e comece a economizar hoje!</p>
               <h3><FaRocket className="me-2" />Disponível nas Lojas</h3>
               <div className="store-logos">
-                <div className="store-badge-wrapper">
+                <a href="https://play.google.com/store/apps/details?id=redeibelieve.app&hl=pt_BR" target="_blank" rel="noopener noreferrer" className="store-badge-wrapper">
                   <img src={googlePlayBadge} alt="Baixar na Google Play Store" width="250" />
-                  <div className="coming-soon-ribbon">Em Breve</div>
-                </div>
-                <div className="store-badge-wrapper">
+                </a>
+                <a href="https://apps.apple.com/br/app/rede-i-believe-ofertas/id6754894996" target="_blank" rel="noopener noreferrer" className="store-badge-wrapper">
                   <img src={appStoreBadge} alt="Baixar na Apple App Store" width="250" />
-                  <div className="coming-soon-ribbon">Em Breve</div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
