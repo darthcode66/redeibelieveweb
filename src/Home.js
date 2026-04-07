@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import logo from './assets/logo_redeibelieve.png';
+import logo from './assets/logo_desconton.png';
 import googlePlayBadge from './assets/google-play-badge.png';
 import appStoreBadge from './assets/app-store-badge.svg';
 import { Link } from 'react-router-dom';
@@ -41,7 +41,7 @@ function Home() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            <img src={logo} alt="Rede I Believe Logo" width="150" />
+            <img src={logo} alt="DescontOn Logo" width="150" />
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -74,7 +74,7 @@ function Home() {
       <header id="home" className="hero-section text-center text-white">
         <div className="container">
           <div className="hero-content">
-            <h1 className="display-4 notranslate">Rede I Believe</h1>
+            <h1 className="display-4 notranslate">DescontOn</h1>
             <p className="lead"><FaBullseye className="me-2" />Clube de Vantagens que conecta Pessoas e Negócios através de Ofertas e Descontos Exclusivos.</p>
             <div className="coming-soon">
               <div className="mb-4">
@@ -104,9 +104,9 @@ function Home() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6">
-              <h2><FaBuilding className="me-2" />Sobre <span className="notranslate">a Rede I Believe</span></h2>
+              <h2><FaBuilding className="me-2" />Sobre o <span className="notranslate">DescontOn</span></h2>
               <p>
-                <span className="notranslate">A Rede I Believe</span> é uma plataforma inovadora que revoluciona o conceito de clube de vantagens.
+                <span className="notranslate">O DescontOn</span> é uma plataforma inovadora que revoluciona o conceito de clube de vantagens.
                 Conectamos compradores, lojistas e fornecedores em um ecossistema único de descontos e ofertas exclusivas.
               </p>
               <p>
@@ -131,7 +131,7 @@ function Home() {
             <div className="col-md-6">
               <div className="about-image">
                 <div>
-                  <h3><FaMobileAlt className="me-2" />App <span className="notranslate">Rede I Believe</span></h3>
+                  <h3><FaMobileAlt className="me-2" />App <span className="notranslate">DescontOn</span></h3>
                   <p className="mt-3 mb-0">Tecnologia que conecta<br/>pessoas e negócios</p>
                 </div>
               </div>
@@ -370,7 +370,7 @@ function Home() {
 
       <section className="benefits-section">
         <div className="container">
-          <h2 className="text-center"><FaStar className="me-2" />Por que Escolher o <span className="notranslate">Rede I Believe</span>?</h2>
+          <h2 className="text-center"><FaStar className="me-2" />Por que Escolher o <span className="notranslate">DescontOn</span>?</h2>
           <div className="row">
             <div className="col-md-6">
               <div className="benefit-item">
@@ -408,7 +408,7 @@ function Home() {
         <div className="container text-center">
           <div className="row">
             <div className="col-md-4">
-              <p><strong>&copy; 2025 <span className="notranslate">Rede I Believe</span></strong></p>
+              <p><strong>&copy; 2026 <span className="notranslate">DescontOn</span></strong></p>
               <p>Todos os direitos reservados.</p>
             </div>
             <div className="col-md-4">
@@ -419,7 +419,7 @@ function Home() {
             </div>
             <div className="col-md-4">
               <p><strong><FaEnvelope className="me-2" />Contato e Suporte</strong></p>
-              <p>suporte@redeibelieve.app</p>
+              <p>suporte@desconton.com.br</p>
               <Link to="/suporte" className="btn btn-outline-light btn-sm mt-2">
                 <FaTicketAlt className="me-2" />Central de Suporte
               </Link>

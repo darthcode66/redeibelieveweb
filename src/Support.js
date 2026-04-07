@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Support.css';
-import logo from './assets/logo_redeibelieve.png';
+import logo from './assets/logo_desconton.png';
 
 function Support() {
   const [activeTab, setActiveTab] = useState('tickets');
@@ -66,7 +66,7 @@ function Support() {
 
   const faqData = [
     {
-      question: 'Como faço para criar uma conta no <span class="notranslate">Rede I Believe</span>?',
+      question: 'Como faço para criar uma conta no <span class="notranslate">DescontOn</span>?',
       answer: 'Para criar uma conta, baixe o aplicativo na App Store ou Google Play, toque em "Criar Conta" e siga as instruções. Você precisará escolher seu tipo de usuário (Comprador, Lojista ou Fornecedor).'
     },
     {
@@ -79,7 +79,7 @@ function Support() {
     },
     {
       question: 'O app é gratuito?',
-      answer: 'Sim, o <span class="notranslate">Rede I Believe</span> é completamente gratuito para todos os tipos de usuário. Não cobramos taxas de inscrição ou mensalidades.'
+      answer: 'Sim, o <span class="notranslate">DescontOn</span> é completamente gratuito para todos os tipos de usuário. Não cobramos taxas de inscrição ou mensalidades.'
     },
     {
       question: 'Como alterar meus dados cadastrais?',
@@ -118,7 +118,7 @@ function Support() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
           <a className="navbar-brand" href="/">
-            <img src={logo} alt="Rede I Believe Logo" width="150" />
+            <img src={logo} alt="DescontOn Logo" width="150" />
           </a>
           <div className="navbar-nav ms-auto">
             <a className="nav-link" href="/">Início</a>
@@ -329,7 +329,7 @@ function Support() {
                   <div className="contact-card">
                     <div className="contact-icon">📧</div>
                     <h4>Email</h4>
-                    <p>suporte@redeibelieve.app</p>
+                    <p>suporte@desconton.com.br</p>
                     <small>Resposta em até 24 horas</small>
                   </div>
                 </div>

@@ -1,0 +1,106 @@
+.DeleteAccount {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.DeleteAccount .navbar {
+  background: linear-gradient(135deg, #1E1C7F 0%, #2C5F7D 100%) !important;
+  padding: 0.8rem 0;
+}
+
+.DeleteAccount .navbar .brand-text {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.DeleteAccount .navbar .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+}
+
+.DeleteAccount .navbar .nav-link:hover {
+  color: #fff !important;
+}
+
+.delete-container {
+  padding: 3rem 0;
+}
+
+.delete-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.delete-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1E1C7F;
+  margin-bottom: 0.5rem;
+}
+
+.delete-subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.delete-info {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.delete-info h5 {
+  color: #856404;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.delete-info ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.delete-info li {
+  color: #856404;
+  margin-bottom: 0.5rem;
+}
+
+.delete-btn {
+  padding: 0.75rem;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.delete-success {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #24B36B;
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.delete-footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.delete-footer a {
+  color: #2C5F7D;
+}

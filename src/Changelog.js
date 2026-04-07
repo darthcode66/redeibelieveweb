@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Changelog.css';
-import logo from './assets/logo_redeibelieve.png';
+import logo from './assets/logo_desconton.png';
 import { Link } from 'react-router-dom';
 
 function Changelog() {
@@ -14,7 +14,7 @@ function Changelog() {
         'Sistema completo de localização e geocoding',
         'Nova experiência de cadastro (Happy Path)',
         'Gerenciamento avançado de ofertas',
-        'Layout com marca I Believe',
+        'Layout com marca DescontOn',
       ],
       features: [
         {
@@ -50,7 +50,7 @@ function Changelog() {
           ]
         },
         {
-          title: 'Layout com Marca I Believe',
+          title: 'Layout com Marca DescontOn',
           icon: '🎨',
           items: [
             'Header com carrossel da marca (3 mensagens)',
@@ -167,7 +167,7 @@ function Changelog() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            <img src={logo} alt="Rede I Believe Logo" width="150" />
+            <img src={logo} alt="DescontOn Logo" width="150" />
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -191,7 +191,7 @@ function Changelog() {
       <div className="changelog-header">
         <div className="container">
           <h1>📋 Histórico de Alterações</h1>
-          <p>Acompanhe todas as novidades e melhorias do aplicativo <span className="notranslate">Rede I Believe</span></p>
+          <p>Acompanhe todas as novidades e melhorias do aplicativo <span className="notranslate">DescontOn</span></p>
         </div>
       </div>
 
@@ -314,7 +314,7 @@ function Changelog() {
           <div className="footer-info">
             <p><strong>👨‍💻 Desenvolvido com assistência de:</strong> Claude Code (Anthropic)</p>
             <p><strong>📅 Última atualização:</strong> {currentVersion.date}</p>
-            <p><strong>🚀 Projeto:</strong> <span className="notranslate">Rede I Believe</span> - Plataforma de ofertas e descontos</p>
+            <p><strong>🚀 Projeto:</strong> <span className="notranslate">DescontOn</span> - Plataforma de ofertas e descontos</p>
           </div>
           <div className="footer-actions">
             <Link to="/" className="btn btn-primary">Voltar ao Início</Link>
