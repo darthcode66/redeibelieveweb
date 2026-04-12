@@ -1,63 +1,75 @@
+/* ========================================
+   DELETE ACCOUNT PAGE - Dark Mode
+   ======================================== */
+
 .DeleteAccount {
   min-height: 100vh;
-  background: #f8f9fa;
+  background: var(--bg-deep, #0B0D0F);
+  color: var(--text-primary, #F7F9FB);
+  font-family: 'DM Sans', sans-serif;
 }
 
 .DeleteAccount .navbar {
-  background: linear-gradient(135deg, #1E1C7F 0%, #2C5F7D 100%) !important;
+  background: rgba(11, 13, 15, 0.9) !important;
+  backdrop-filter: blur(20px);
   padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .DeleteAccount .navbar .brand-text {
-  color: #fff;
+  color: var(--text-primary, #F7F9FB);
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .DeleteAccount .navbar .nav-link {
-  color: rgba(255, 255, 255, 0.85) !important;
+  color: var(--text-secondary, #9AA4AF) !important;
   font-weight: 500;
 }
 
 .DeleteAccount .navbar .nav-link:hover {
-  color: #fff !important;
+  color: #A8E846 !important;
 }
 
 .delete-container {
-  padding: 3rem 0;
+  padding: 6rem 0 3rem;
 }
 
 .delete-card {
-  background: #fff;
-  border-radius: 12px;
+  background: var(--bg-card, #1A1E25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
   padding: 2.5rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .delete-title {
-  font-size: 1.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #1E1C7F;
+  color: var(--text-primary, #F7F9FB);
   margin-bottom: 0.5rem;
 }
 
 .delete-subtitle {
-  color: #666;
+  color: var(--text-secondary, #9AA4AF);
   margin-bottom: 2rem;
+  font-size: 0.95rem;
 }
 
 .delete-info {
-  background: #fff3cd;
-  border: 1px solid #ffc107;
-  border-radius: 8px;
-  padding: 1.5rem;
+  background: rgba(255, 193, 7, 0.08);
+  border: 1px solid rgba(255, 193, 7, 0.2);
+  border-radius: 10px;
+  padding: 1.25rem;
   margin-bottom: 2rem;
 }
 
 .delete-info h5 {
-  color: #856404;
+  color: #FFD54F;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
 }
 
 .delete-info ul {
@@ -66,14 +78,56 @@
 }
 
 .delete-info li {
-  color: #856404;
-  margin-bottom: 0.5rem;
+  color: #FFD54F;
+  margin-bottom: 0.4rem;
+  font-size: 0.875rem;
+  opacity: 0.85;
+}
+
+.delete-card .form-label {
+  color: var(--text-secondary, #9AA4AF);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.delete-card .form-control,
+.delete-card .form-select {
+  background: var(--bg-deep, #0B0D0F);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: var(--text-primary, #F7F9FB);
+  padding: 0.75rem 1rem;
+}
+
+.delete-card .form-control:focus,
+.delete-card .form-select:focus {
+  border-color: #EF5350;
+  box-shadow: 0 0 0 2px rgba(239, 83, 80, 0.15);
+}
+
+.delete-card .form-check-label {
+  color: var(--text-secondary, #9AA4AF);
+  font-size: 0.875rem;
 }
 
 .delete-btn {
   padding: 0.75rem;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 10px;
+  background: #EF5350;
+  border-color: #EF5350;
+  font-size: 0.95rem;
+}
+
+.delete-btn:hover {
+  background: #E53935;
+  border-color: #E53935;
+}
+
+.delete-btn:disabled {
+  background: rgba(239, 83, 80, 0.3);
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .delete-success {
@@ -82,25 +136,30 @@
 }
 
 .success-icon {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: #24B36B;
-  color: #fff;
-  font-size: 2rem;
+  background: linear-gradient(135deg, #A8E846, #00C853);
+  color: #0B0D0F;
+  font-size: 1.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1.25rem;
 }
 
 .delete-footer {
   text-align: center;
-  padding: 2rem 0;
-  color: #999;
-  font-size: 0.9rem;
+  padding: 1.5rem 0;
+  color: var(--text-muted, #636D78);
+  font-size: 0.85rem;
 }
 
 .delete-footer a {
-  color: #2C5F7D;
+  color: #A8E846;
+  text-decoration: none;
+}
+
+.delete-footer a:hover {
+  text-decoration: underline;
 }
