@@ -5,430 +5,527 @@ import googlePlayBadge from './assets/google-play-badge.png';
 import appStoreBadge from './assets/app-store-badge.svg';
 import { Link } from 'react-router-dom';
 import {
-  FaBullseye, FaMoneyBillWave, FaShoppingBag, FaMobileAlt, FaRocket,
-  FaBuilding, FaGlobeAmericas, FaHandshake, FaShoppingCart, FaStore,
-  FaTruck, FaGift, FaStar, FaAward, FaGem, FaQuestionCircle, FaCreditCard,
-  FaSyncAlt, FaChartBar, FaChartLine, FaArrowUp, FaTag, FaBolt, FaTags,
-  FaMapMarkerAlt, FaLock, FaClipboardList, FaEnvelope, FaTicketAlt, FaHeart,
-  FaCheckCircle, FaTimesCircle, FaMedal
+  FaBolt, FaTags, FaMapMarkerAlt, FaChartBar, FaLock, FaHandshake,
+  FaShoppingCart, FaStore, FaTruck, FaCheck, FaTimes, FaBars, FaTimes as FaClose,
+  FaChevronDown, FaEnvelope, FaArrowRight
 } from 'react-icons/fa';
 
 function Home() {
-  const [billingPeriod, setBillingPeriod] = useState('monthly');
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
+  const [planType, setPlanType] = useState('lojista');
 
-  const calculateSavings = (monthlyPrice) => {
-    if (billingPeriod === 'annual') {
-      const annualPrice = monthlyPrice * 10; // 12 meses - 2 meses grátis
-      const monthlySavings = (monthlyPrice * 12) - annualPrice;
-      return {
-        price: annualPrice,
-        savings: monthlySavings,
-        monthlyEquivalent: (annualPrice / 12).toFixed(0)
-      };
-    }
-    return {
-      price: monthlyPrice,
-      savings: 0,
-      monthlyEquivalent: monthlyPrice
-    };
-  };
+  const toggleFaq = (i) => setOpenFaq(openFaq === i ? null : i);
 
-  const proPlan = calculateSavings(149);
-  const businessPlan = calculateSavings(499);
+  const faqs = [
+    { q: 'Quais formas de pagamento vocês aceitam?', a: 'Aceitamos cartão de crédito, débito, PIX, boleto bancário e transferência. Para planos anuais, oferecemos desconto adicional no pagamento à vista.' },
+    { q: 'Posso cancelar minha assinatura a qualquer momento?', a: 'Sim! Você pode cancelar quando quiser, sem multas ou taxas. Se cancelar no meio do mês, você continua com acesso até o fim do período pago.' },
+    { q: 'O que são "ofertas em destaque"?', a: 'Ofertas em destaque aparecem no topo dos resultados de busca e na página inicial do app por 3 dias, aumentando sua visibilidade em até 10x comparado a ofertas normais.' },
+    { q: 'O plano gratuito tem alguma limitação de tempo?', a: 'Não! O plano gratuito é 100% gratuito para sempre. Você pode criar até 2 ofertas ativas sem pagar nada. Recursos premium são opcionais.' },
+    { q: 'Posso ter múltiplas lojas em um único plano?', a: 'Sim! Nos planos Enterprise e Premium você pode gerenciar múltiplas localizações. Cada loja pode criar ofertas independentemente.' },
+    { q: 'Vocês cobram comissão sobre as vendas?', a: 'Atualmente não cobramos comissão sobre vendas ou resgates de ofertas. Você paga apenas a assinatura mensal ou recursos avulsos.' },
+    { q: 'Posso fazer upgrade ou downgrade do plano?', a: 'Sim! Você pode mudar de plano a qualquer momento. No upgrade, cobramos apenas a diferença proporcional. No downgrade, o crédito é usado no próximo mês.' },
+    { q: 'Existe trial gratuito dos planos pagos?', a: 'Sim! Oferecemos 14 dias grátis do Plano PRO para novos usuários. Não é necessário cartão de crédito para começar o trial.' },
+  ];
 
   return (
     <div className="Home">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
-            <img src={logo} alt="DescontOn Logo" width="150" />
+      {/* NAVBAR */}
+      <nav className="dt-navbar">
+        <div className="dt-navbar-inner">
+          <Link className="dt-logo" to="/">
+            <img src={logo} alt="DescontOn" />
           </Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+          <ul className={`dt-nav-links ${mobileMenu ? 'open' : ''}`}>
+            <li><a href="#about" onClick={() => setMobileMenu(false)}>Sobre</a></li>
+            <li><a href="#features" onClick={() => setMobileMenu(false)}>Funcionalidades</a></li>
+            <li><a href="#pricing" onClick={() => setMobileMenu(false)}>Precos</a></li>
+            <li><a href="#faq" onClick={() => setMobileMenu(false)}>FAQ</a></li>
+            <li><Link to="/suporte" onClick={() => setMobileMenu(false)}>Suporte</Link></li>
+            <li><a href="#pricing" className="dt-nav-cta" onClick={() => setMobileMenu(false)}>Baixar App</a></li>
+          </ul>
+          <button className="dt-menu-toggle" onClick={() => setMobileMenu(!mobileMenu)} aria-label="Menu">
+            {mobileMenu ? <FaClose /> : <FaBars />}
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <a className="nav-link" href="#about">Sobre</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#features">Funcionalidades</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#pricing">Preços</a>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/changelog">Changelog</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/suporte">Suporte</Link>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#contact">Contato</a>
-              </li>
-            </ul>
-          </div>
         </div>
       </nav>
 
-      <header id="home" className="hero-section text-center text-white">
-        <div className="container">
-          <div className="hero-content">
-            <h1 className="display-4 notranslate">DescontOn</h1>
-            <p className="lead"><FaBullseye className="me-2" />Clube de Vantagens que conecta Pessoas e Negócios através de Ofertas e Descontos Exclusivos.</p>
-            <div className="coming-soon">
-              <div className="mb-4">
-                <a href="#pricing" className="cta-button cta-primary">
-                  <FaMoneyBillWave className="me-2" />Ver Planos e Preços
-                </a>
-                <a href="#features" className="cta-button cta-secondary">
-                  <FaShoppingBag className="me-2" />Conhecer Funcionalidades
-                </a>
-              </div>
-              <p className="download-note"><FaMobileAlt className="me-2" />Baixe o app gratuitamente e comece a economizar hoje!</p>
-              <h3><FaRocket className="me-2" />Disponível nas Lojas</h3>
-              <div className="store-logos">
-                <a href="https://play.google.com/store/apps/details?id=redeibelieve.app&hl=pt_BR" target="_blank" rel="noopener noreferrer" className="store-badge-wrapper">
-                  <img src={googlePlayBadge} alt="Baixar na Google Play Store" width="250" />
-                </a>
-                <a href="https://apps.apple.com/br/app/rede-i-believe-ofertas/id6754894996" target="_blank" rel="noopener noreferrer" className="store-badge-wrapper">
-                  <img src={appStoreBadge} alt="Baixar na Apple App Store" width="250" />
-                </a>
-              </div>
+      {/* HERO */}
+      <header className="dt-hero">
+        <div className="dt-hero-content">
+          <div className="dt-hero-badge">
+            <FaBolt /> Clube de Vantagens
+          </div>
+          <h1>
+            Descontos exclusivos<br />
+            na <span className="dt-highlight">sua cidade</span>
+          </h1>
+          <p className="dt-hero-desc">
+            Conectamos compradores, lojistas e fornecedores em um ecossistema
+            de ofertas e descontos exclusivos para fortalecer o comercio local.
+          </p>
+          <div className="dt-hero-actions">
+            <a href="#pricing" className="dt-btn dt-btn-primary">
+              Ver Planos <FaArrowRight />
+            </a>
+            <a href="#features" className="dt-btn dt-btn-outline">
+              Como Funciona
+            </a>
+          </div>
+          <div className="dt-hero-stores">
+            <a href="https://play.google.com/store/apps/details?id=redeibelieve.app&hl=pt_BR" target="_blank" rel="noopener noreferrer" className="dt-store-badge">
+              <img src={googlePlayBadge} alt="Google Play" />
+            </a>
+            <a href="https://apps.apple.com/br/app/rede-i-believe-ofertas/id6754894996" target="_blank" rel="noopener noreferrer" className="dt-store-badge">
+              <img src={appStoreBadge} alt="App Store" />
+            </a>
+          </div>
+          <div className="dt-hero-stats">
+            <div className="dt-stat">
+              <div className="dt-stat-value">100%</div>
+              <div className="dt-stat-label">Gratuito para compradores</div>
+            </div>
+            <div className="dt-stat">
+              <div className="dt-stat-value">10x</div>
+              <div className="dt-stat-label">Mais visibilidade</div>
+            </div>
+            <div className="dt-stat">
+              <div className="dt-stat-value">0%</div>
+              <div className="dt-stat-label">Comissao sobre vendas</div>
             </div>
           </div>
         </div>
       </header>
 
-      <section id="about" className="about-section">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-md-6">
-              <h2><FaBuilding className="me-2" />Sobre o <span className="notranslate">DescontOn</span></h2>
+      {/* ABOUT */}
+      <section id="about" className="dt-section dt-about">
+        <div className="dt-container">
+          <div className="dt-about-grid">
+            <div className="dt-about-text">
+              <span className="dt-section-tag">Sobre o DescontOn</span>
+              <h2>Tecnologia que conecta pessoas e negocios</h2>
               <p>
-                <span className="notranslate">O DescontOn</span> é uma plataforma inovadora que revoluciona o conceito de clube de vantagens.
-                Conectamos compradores, lojistas e fornecedores em um ecossistema único de descontos e ofertas exclusivas.
+                O <strong>DescontOn</strong> e uma plataforma inovadora que revoluciona o conceito de clube de vantagens.
+                Conectamos compradores, lojistas e fornecedores em um ecossistema unico de descontos.
               </p>
               <p>
-                Nossa missão é <strong>fortalecer o comércio local</strong>, criar oportunidades de negócio e
-                proporcionar economia real para todos os usuários da plataforma.
+                Nossa missao e <strong>fortalecer o comercio local</strong>, criar oportunidades de negocio
+                e proporcionar economia real para todos os usuarios.
               </p>
-              <div className="mt-4">
-                <div className="benefit-item">
-                  <div className="benefit-icon"><FaMoneyBillWave /></div>
-                  <div className="benefit-text">Descontos Exclusivos e Ofertas Especiais</div>
+              <div className="dt-about-points">
+                <div className="dt-about-point">
+                  <div className="dt-about-point-icon"><FaBolt /></div>
+                  <span>Ofertas relampago com descontos exclusivos</span>
                 </div>
-                <div className="benefit-item">
-                  <div className="benefit-icon"><FaGlobeAmericas /></div>
-                  <div className="benefit-text">Fortalecimento do Comércio Local</div>
+                <div className="dt-about-point">
+                  <div className="dt-about-point-icon"><FaMapMarkerAlt /></div>
+                  <span>Geolocalizacao para encontrar ofertas proximas</span>
                 </div>
-                <div className="benefit-item">
-                  <div className="benefit-icon"><FaHandshake /></div>
-                  <div className="benefit-text">Rede de Parceiros Confiáveis</div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="about-image">
-                <div>
-                  <h3><FaMobileAlt className="me-2" />App <span className="notranslate">DescontOn</span></h3>
-                  <p className="mt-3 mb-0">Tecnologia que conecta<br/>pessoas e negócios</p>
+                <div className="dt-about-point">
+                  <div className="dt-about-point-icon"><FaHandshake /></div>
+                  <span>Rede de parceiros confiaveis e verificados</span>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="features" className="features-section">
-        <div className="container">
-          <h2 className="text-center"><FaRocket className="me-2" />Funcionalidades para Todos</h2>
-          <div className="row">
-            <div className="col-md-6 col-lg-4 mb-4">
-              <div className="card feature-card text-center">
-                <div className="card-body">
-                  <div className="feature-icon comprador"><FaShoppingCart /></div>
-                  <h5 className="card-title">Compradores</h5>
-                  <p className="card-text">
-                    Encontre as <strong>melhores ofertas</strong> e descontos exclusivos na sua região.
-                    Economize em compras do dia a dia com ofertas verificadas.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4 mb-4">
-              <div className="card feature-card text-center">
-                <div className="card-body">
-                  <div className="feature-icon lojista"><FaStore /></div>
-                  <h5 className="card-title">Lojistas</h5>
-                  <p className="card-text">
-                    Crie e gerencie suas <strong>ofertas promocionais</strong> para atrair novos clientes
-                    e aumentar suas vendas de forma estratégica.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4 mb-4">
-              <div className="card feature-card text-center">
-                <div className="card-body">
-                  <div className="feature-icon fornecedor"><FaTruck /></div>
-                  <h5 className="card-title">Fornecedores</h5>
-                  <p className="card-text">
-                    Ofereça seus produtos diretamente para <strong>lojistas</strong>,
-                    expandindo seu alcance no mercado B2B e fortalecendo a cadeia comercial.
-                  </p>
-                </div>
+            <div className="dt-about-visual">
+              <div className="dt-about-card">
+                <img src={logo} alt="DescontOn" className="dt-about-card-logo" />
+                <p>Seu clube de vantagens digital</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="pricing" className="pricing-section">
-        <div className="container">
-          <h2 className="text-center"><FaMoneyBillWave className="me-2" />Planos e Preços</h2>
-          <p className="text-center subtitle">Escolha o plano ideal para impulsionar seu negócio</p>
+      {/* FEATURES */}
+      <section id="features" className="dt-section">
+        <div className="dt-container">
+          <div className="dt-section-header">
+            <span className="dt-section-tag">Funcionalidades</span>
+            <h2>Para cada tipo de usuario</h2>
+            <p>Ferramentas poderosas para compradores, lojistas e fornecedores</p>
+          </div>
+          <div className="dt-features-grid">
+            <div className="dt-feature-card">
+              <div className="dt-feature-icon buyer"><FaShoppingCart /></div>
+              <h3>Compradores</h3>
+              <p>Encontre as melhores ofertas e descontos exclusivos na sua regiao.</p>
+              <ul className="dt-feature-list">
+                <li><FaCheck /> Ofertas por localizacao no mapa</li>
+                <li><FaCheck /> Filtro por categoria e proximidade</li>
+                <li><FaCheck /> Resgate de cupons digitais</li>
+                <li><FaCheck /> Ofertas relampago com countdown</li>
+              </ul>
+            </div>
+            <div className="dt-feature-card">
+              <div className="dt-feature-icon merchant"><FaStore /></div>
+              <h3>Lojistas</h3>
+              <p>Crie e gerencie ofertas promocionais para atrair novos clientes.</p>
+              <ul className="dt-feature-list">
+                <li><FaCheck /> Criar ofertas ilimitadas</li>
+                <li><FaCheck /> Analytics e metricas de resgate</li>
+                <li><FaCheck /> Badge "Loja Verificada"</li>
+                <li><FaCheck /> Prioridade na busca e no mapa</li>
+              </ul>
+            </div>
+            <div className="dt-feature-card">
+              <div className="dt-feature-icon supplier"><FaTruck /></div>
+              <h3>Fornecedores</h3>
+              <p>Ofereca seus produtos diretamente para lojistas em escala B2B.</p>
+              <ul className="dt-feature-list">
+                <li><FaCheck /> Alcance de mercado B2B</li>
+                <li><FaCheck /> Dashboard de vendas</li>
+                <li><FaCheck /> Gestao de multiplas lojas</li>
+                <li><FaCheck /> Integracao com cadeia comercial</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          {/* Billing Period Toggle */}
-          <div className="billing-toggle text-center mb-5">
+      {/* PRICING */}
+      <section id="pricing" className="dt-section dt-pricing">
+        <div className="dt-container">
+          <div className="dt-section-header">
+            <span className="dt-section-tag">Planos e Precos</span>
+            <h2>Escolha o plano ideal</h2>
+            <p>Planos para cada tipo de negocio. Comece gratis!</p>
+          </div>
+
+          <div className="dt-billing-toggle">
             <button
-              className={`billing-btn ${billingPeriod === 'monthly' ? 'active' : ''}`}
-              onClick={() => setBillingPeriod('monthly')}
+              className={`dt-billing-btn ${planType === 'lojista' ? 'active' : ''}`}
+              onClick={() => setPlanType('lojista')}
             >
-              Mensal
+              <FaStore style={{ marginRight: 6 }} /> Lojistas
             </button>
             <button
-              className={`billing-btn ${billingPeriod === 'annual' ? 'active' : ''}`}
-              onClick={() => setBillingPeriod('annual')}
+              className={`dt-billing-btn ${planType === 'fornecedor' ? 'active' : ''}`}
+              onClick={() => setPlanType('fornecedor')}
             >
-              Anual
-              <span className="badge-save">Economize até 17%</span>
+              <FaTruck style={{ marginRight: 6 }} /> Fornecedores
             </button>
           </div>
 
-          <div className="row justify-content-center">
-            {/* Plano Gratuito */}
-            <div className="col-md-6 col-lg-4 mb-4">
-              <div className="pricing-card">
-                <div className="pricing-badge">Sempre Gratuito</div>
-                <div className="pricing-icon"><FaGift /></div>
-                <h3>Plano Gratuito</h3>
-                <div className="pricing-price">
-                  <span className="price-currency">R$</span>
-                  <span className="price-amount">0</span>
-                  <span className="price-period">/mês</span>
+          {/* PLANOS LOJISTAS */}
+          {planType === 'lojista' && (
+            <div className="dt-pricing-grid dt-pricing-grid-4">
+              {/* Gratuito */}
+              <div className="dt-pricing-card">
+                <div className="dt-pricing-badge">Sempre Gratuito</div>
+                <h3>Gratuito</h3>
+                <p className="dt-pricing-desc">Para comecar a divulgar</p>
+                <div className="dt-price">
+                  <span className="dt-price-currency">R$</span>
+                  <span className="dt-price-amount">0</span>
+                  <span className="dt-price-period">/mes</span>
                 </div>
-                <p className="pricing-description">Perfeito para começar a divulgar suas ofertas</p>
-                <ul className="pricing-features">
-                  <li><FaCheckCircle className="me-2 text-success" />Criar ofertas ilimitadas</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Ofertas normais e relâmpago</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Editar e pausar ofertas</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Estatísticas básicas</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Perfil da empresa</li>
-                  <li><FaTimesCircle className="me-2 text-muted" />Ofertas em destaque</li>
-                  <li><FaTimesCircle className="me-2 text-muted" />Analytics avançados</li>
-                  <li><FaTimesCircle className="me-2 text-muted" />Badge premium</li>
+                <p className="dt-pricing-note">Gratuito para sempre</p>
+                <ul className="dt-pricing-features">
+                  <li><FaCheck className="check" /> Ate 2 ofertas ativas</li>
+                  <li><FaCheck className="check" /> Estatisticas basicas</li>
+                  <li><FaCheck className="check" /> Perfil da empresa</li>
+                  <li className="disabled"><FaTimes className="x" /> Ofertas em destaque</li>
+                  <li className="disabled"><FaTimes className="x" /> Ofertas relampago</li>
+                  <li className="disabled"><FaTimes className="x" /> Analytics avancados</li>
+                  <li className="disabled"><FaTimes className="x" /> Prioridade no mapa</li>
                 </ul>
-                <a href="#contact" className="pricing-button btn-free">
-                  Começar Grátis
+                <a href="#contact" className="dt-pricing-btn dt-pricing-btn-outline">
+                  Comecar Gratis
+                </a>
+              </div>
+
+              {/* Basico */}
+              <div className="dt-pricing-card">
+                <div className="dt-pricing-badge">Iniciante</div>
+                <h3>Basico</h3>
+                <p className="dt-pricing-desc">Para lojas em crescimento</p>
+                <div className="dt-price">
+                  <span className="dt-price-currency">R$</span>
+                  <span className="dt-price-amount">49</span>
+                  <span className="dt-price-period">,90/mes</span>
+                </div>
+                <p className="dt-pricing-note">Cancele quando quiser</p>
+                <ul className="dt-pricing-features">
+                  <li><FaCheck className="check" /> Ate 5 ofertas ativas</li>
+                  <li><FaCheck className="check" /> Estatisticas basicas</li>
+                  <li><FaCheck className="check" /> Perfil da empresa</li>
+                  <li><FaCheck className="check" /> Ofertas em destaque</li>
+                  <li className="disabled"><FaTimes className="x" /> Ofertas relampago</li>
+                  <li className="disabled"><FaTimes className="x" /> Analytics avancados</li>
+                  <li className="disabled"><FaTimes className="x" /> Prioridade no mapa</li>
+                </ul>
+                <a href="#contact" className="dt-pricing-btn dt-pricing-btn-outline">
+                  Assinar Basico
+                </a>
+              </div>
+
+              {/* Profissional */}
+              <div className="dt-pricing-card popular">
+                <div className="dt-pricing-badge">Mais Popular</div>
+                <h3>Profissional</h3>
+                <p className="dt-pricing-desc">Mais visibilidade e recursos</p>
+                <div className="dt-price">
+                  <span className="dt-price-currency">R$</span>
+                  <span className="dt-price-amount">99</span>
+                  <span className="dt-price-period">,90/mes</span>
+                </div>
+                <p className="dt-pricing-note">Cancele quando quiser</p>
+                <ul className="dt-pricing-features">
+                  <li><FaCheck className="check" /> Ate 20 ofertas ativas</li>
+                  <li><FaCheck className="check" /> Ofertas em destaque</li>
+                  <li><FaCheck className="check" /> Ofertas relampago</li>
+                  <li><FaCheck className="check" /> Analytics avancados</li>
+                  <li><FaCheck className="check" /> Perfil da empresa</li>
+                  <li className="disabled"><FaTimes className="x" /> Prioridade no mapa</li>
+                  <li className="disabled"><FaTimes className="x" /> Suporte prioritario</li>
+                </ul>
+                <a href="#contact" className="dt-pricing-btn dt-pricing-btn-primary">
+                  Assinar Profissional
+                </a>
+              </div>
+
+              {/* Premium */}
+              <div className="dt-pricing-card">
+                <div className="dt-pricing-badge">Completo</div>
+                <h3>Premium</h3>
+                <p className="dt-pricing-desc">Todos os recursos liberados</p>
+                <div className="dt-price">
+                  <span className="dt-price-currency">R$</span>
+                  <span className="dt-price-amount">199</span>
+                  <span className="dt-price-period">,90/mes</span>
+                </div>
+                <p className="dt-pricing-note">Cancele quando quiser</p>
+                <ul className="dt-pricing-features">
+                  <li><FaCheck className="check" /> <strong>Ofertas ilimitadas</strong></li>
+                  <li><FaCheck className="check" /> Ofertas em destaque</li>
+                  <li><FaCheck className="check" /> Ofertas relampago</li>
+                  <li><FaCheck className="check" /> Analytics avancados</li>
+                  <li><FaCheck className="check" /> Prioridade no mapa</li>
+                  <li><FaCheck className="check" /> Suporte prioritario</li>
+                  <li><FaCheck className="check" /> Todos os recursos</li>
+                </ul>
+                <a href="#contact" className="dt-pricing-btn dt-pricing-btn-outline">
+                  Assinar Premium
                 </a>
               </div>
             </div>
+          )}
 
-            {/* Plano PRO - Recomendado */}
-            <div className="col-md-6 col-lg-4 mb-4">
-              <div className="pricing-card popular">
-                <div className="pricing-badge popular-badge"><FaAward className="me-2" />Mais Popular</div>
-                <div className="pricing-icon"><FaStar /></div>
-                <h3>Plano PRO</h3>
-                <div className="pricing-price">
-                  <span className="price-currency">R$</span>
-                  <span className="price-amount">
-                    {billingPeriod === 'monthly' ? '149' : proPlan.monthlyEquivalent}
-                  </span>
-                  <span className="price-period">/mês</span>
+          {/* PLANOS FORNECEDORES / ATACADISTAS */}
+          {planType === 'fornecedor' && (
+            <div className="dt-pricing-grid dt-pricing-grid-4">
+              {/* Gratuito */}
+              <div className="dt-pricing-card">
+                <div className="dt-pricing-badge">Sempre Gratuito</div>
+                <h3>Gratuito</h3>
+                <p className="dt-pricing-desc">Para comecar no B2B</p>
+                <div className="dt-price">
+                  <span className="dt-price-currency">R$</span>
+                  <span className="dt-price-amount">0</span>
+                  <span className="dt-price-period">/mes</span>
                 </div>
-                {billingPeriod === 'annual' && (
-                  <div className="pricing-savings">
-                    <FaMoneyBillWave className="me-2" />R$ {proPlan.price.toLocaleString('pt-BR')}/ano - Economize R$ {proPlan.savings}!
-                  </div>
-                )}
-                {billingPeriod === 'monthly' && (
-                  <div className="pricing-note">Ou R$ 1.490/ano (economize R$ 298)</div>
-                )}
-                <p className="pricing-description">Para quem quer mais visibilidade e resultados</p>
-                <ul className="pricing-features">
-                  <li><FaCheckCircle className="me-2 text-success" /><strong>Tudo do plano Gratuito</strong></li>
-                  <li><FaCheckCircle className="me-2 text-success" /><strong>5 ofertas em destaque/mês</strong></li>
-                  <li><FaCheckCircle className="me-2 text-success" />Badge "Loja Verificada" <FaMedal className="text-warning" /></li>
-                  <li><FaCheckCircle className="me-2 text-success" />Analytics avançados</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Prioridade na busca</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Suporte prioritário</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Relatórios de desempenho</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Insights de público</li>
+                <p className="dt-pricing-note">Gratuito para sempre</p>
+                <ul className="dt-pricing-features">
+                  <li><FaCheck className="check" /> Ate 2 ofertas ativas</li>
+                  <li><FaCheck className="check" /> Estatisticas basicas</li>
+                  <li><FaCheck className="check" /> Perfil da empresa</li>
+                  <li className="disabled"><FaTimes className="x" /> Ofertas em destaque</li>
+                  <li className="disabled"><FaTimes className="x" /> Ofertas relampago</li>
+                  <li className="disabled"><FaTimes className="x" /> Analytics avancados</li>
+                  <li className="disabled"><FaTimes className="x" /> Suporte prioritario</li>
                 </ul>
-                <a href="#contact" className="pricing-button btn-annual">
-                  Assinar Plano PRO
+                <a href="#contact" className="dt-pricing-btn dt-pricing-btn-outline">
+                  Comecar Gratis
+                </a>
+              </div>
+
+              {/* Starter */}
+              <div className="dt-pricing-card">
+                <div className="dt-pricing-badge">Iniciante</div>
+                <h3>Starter</h3>
+                <p className="dt-pricing-desc">Para fornecedores iniciantes</p>
+                <div className="dt-price">
+                  <span className="dt-price-currency">R$</span>
+                  <span className="dt-price-amount">149</span>
+                  <span className="dt-price-period">,90/mes</span>
+                </div>
+                <p className="dt-pricing-note">Cancele quando quiser</p>
+                <ul className="dt-pricing-features">
+                  <li><FaCheck className="check" /> Ate 10 ofertas ativas</li>
+                  <li><FaCheck className="check" /> Estatisticas basicas</li>
+                  <li><FaCheck className="check" /> Perfil da empresa</li>
+                  <li className="disabled"><FaTimes className="x" /> Ofertas em destaque</li>
+                  <li className="disabled"><FaTimes className="x" /> Ofertas relampago</li>
+                  <li className="disabled"><FaTimes className="x" /> Analytics avancados</li>
+                  <li className="disabled"><FaTimes className="x" /> Suporte prioritario</li>
+                </ul>
+                <a href="#contact" className="dt-pricing-btn dt-pricing-btn-outline">
+                  Assinar Starter
+                </a>
+              </div>
+
+              {/* Business */}
+              <div className="dt-pricing-card popular">
+                <div className="dt-pricing-badge">Mais Popular</div>
+                <h3>Business</h3>
+                <p className="dt-pricing-desc">Para operacoes em escala</p>
+                <div className="dt-price">
+                  <span className="dt-price-currency">R$</span>
+                  <span className="dt-price-amount">299</span>
+                  <span className="dt-price-period">,90/mes</span>
+                </div>
+                <p className="dt-pricing-note">Cancele quando quiser</p>
+                <ul className="dt-pricing-features">
+                  <li><FaCheck className="check" /> Ate 50 ofertas ativas</li>
+                  <li><FaCheck className="check" /> Ofertas em destaque</li>
+                  <li><FaCheck className="check" /> Ofertas relampago</li>
+                  <li><FaCheck className="check" /> Analytics avancados</li>
+                  <li><FaCheck className="check" /> Perfil da empresa</li>
+                  <li className="disabled"><FaTimes className="x" /> Suporte prioritario</li>
+                  <li className="disabled"><FaTimes className="x" /> Prioridade no mapa</li>
+                </ul>
+                <a href="#contact" className="dt-pricing-btn dt-pricing-btn-primary">
+                  Assinar Business
+                </a>
+              </div>
+
+              {/* Enterprise */}
+              <div className="dt-pricing-card">
+                <div className="dt-pricing-badge">Completo</div>
+                <h3>Enterprise</h3>
+                <p className="dt-pricing-desc">Solucao completa para atacado</p>
+                <div className="dt-price">
+                  <span className="dt-price-currency">R$</span>
+                  <span className="dt-price-amount">499</span>
+                  <span className="dt-price-period">,90/mes</span>
+                </div>
+                <p className="dt-pricing-note">Cancele quando quiser</p>
+                <ul className="dt-pricing-features">
+                  <li><FaCheck className="check" /> <strong>Ofertas ilimitadas</strong></li>
+                  <li><FaCheck className="check" /> Ofertas em destaque</li>
+                  <li><FaCheck className="check" /> Ofertas relampago</li>
+                  <li><FaCheck className="check" /> Analytics avancados</li>
+                  <li><FaCheck className="check" /> Prioridade no mapa</li>
+                  <li><FaCheck className="check" /> Suporte prioritario</li>
+                  <li><FaCheck className="check" /> Todos os recursos</li>
+                </ul>
+                <a href="#contact" className="dt-pricing-btn dt-pricing-btn-outline">
+                  Assinar Enterprise
                 </a>
               </div>
             </div>
+          )}
 
-            {/* Plano Business */}
-            <div className="col-md-6 col-lg-4 mb-4">
-              <div className="pricing-card">
-                <div className="pricing-badge">Para Empresas</div>
-                <div className="pricing-icon"><FaGem /></div>
-                <h3>Plano Business</h3>
-                <div className="pricing-price">
-                  <span className="price-currency">R$</span>
-                  <span className="price-amount">
-                    {billingPeriod === 'monthly' ? '499' : businessPlan.monthlyEquivalent}
-                  </span>
-                  <span className="price-period">/mês</span>
-                </div>
-                {billingPeriod === 'annual' && (
-                  <div className="pricing-savings">
-                    <FaGem className="me-2" />R$ {businessPlan.price.toLocaleString('pt-BR')}/ano - Economize R$ {businessPlan.savings}!
-                  </div>
-                )}
-                {billingPeriod === 'monthly' && (
-                  <div className="pricing-note">Ou R$ 4.990/ano (economize R$ 998)</div>
-                )}
-                <p className="pricing-description">Solução completa para redes e múltiplas lojas</p>
-                <ul className="pricing-features">
-                  <li><FaCheckCircle className="me-2 text-success" /><strong>Tudo do plano PRO</strong></li>
-                  <li><FaCheckCircle className="me-2 text-success" /><strong>Ofertas destaque ilimitadas</strong></li>
-                  <li><FaCheckCircle className="me-2 text-success" />Até 5 localizações (lojas)</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Publicidade segmentada</li>
-                  <li><FaCheckCircle className="me-2 text-success" />API de integração</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Dashboard customizado</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Gerente de conta dedicado</li>
-                  <li><FaCheckCircle className="me-2 text-success" />Consultoria de marketing</li>
-                </ul>
-                <a href="#contact" className="pricing-button btn-monthly">
-                  Falar com Especialista
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="pricing-footer text-center">
-            <p><strong><FaBullseye className="me-2" />Recursos À La Carte</strong> (para quem está no Plano Gratuito):</p>
-            <p>
-              1 Oferta em Destaque (3 dias): <strong>R$ 79</strong> •
-              Pacote 3 Ofertas: <strong>R$ 199</strong> •
-              Pacote 10 Ofertas: <strong>R$ 590</strong>
-            </p>
-            <p className="mt-3">
-              <em><FaCreditCard className="me-2" />Aceitamos todas as formas de pagamento. Cancele quando quiser, sem multas.</em>
-            </p>
+          <div className="dt-pricing-footer">
+            <p>Sem comissao sobre vendas. Cancele quando quiser, sem multas.</p>
+            <p style={{ marginTop: '0.5rem' }}>Pagamento via Google Play ou App Store. Renovacao automatica mensal.</p>
           </div>
         </div>
       </section>
 
-      <section className="faq-section">
-        <div className="container">
-          <h2 className="text-center"><FaQuestionCircle className="me-2" />Perguntas Frequentes sobre Preços</h2>
-          <div className="row justify-content-center">
-            <div className="col-lg-8">
-              <div className="faq-item">
-                <h5><FaCreditCard className="me-2" />Quais formas de pagamento vocês aceitam?</h5>
-                <p>Aceitamos cartão de crédito, débito, PIX, boleto bancário e transferência. Para planos anuais, oferecemos desconto adicional no pagamento à vista.</p>
-              </div>
-              <div className="faq-item">
-                <h5><FaSyncAlt className="me-2" />Posso cancelar minha assinatura a qualquer momento?</h5>
-                <p>Sim! Você pode cancelar quando quiser, sem multas ou taxas. Se cancelar no meio do mês, você continua com acesso até o fim do período pago.</p>
-              </div>
-              <div className="faq-item">
-                <h5><FaChartBar className="me-2" />O que são "ofertas em destaque"?</h5>
-                <p>Ofertas em destaque aparecem no topo dos resultados de busca e na página inicial do app por 3 dias, aumentando sua visibilidade em até 10x comparado a ofertas normais.</p>
-              </div>
-              <div className="faq-item">
-                <h5><FaGift className="me-2" />O plano gratuito tem alguma limitação de tempo?</h5>
-                <p>Não! O plano gratuito é <strong>100% gratuito para sempre</strong>. Você pode criar ofertas ilimitadas sem pagar nada. Recursos premium são opcionais.</p>
-              </div>
-              <div className="faq-item">
-                <h5><FaStore className="me-2" />Posso ter múltiplas lojas em um único plano?</h5>
-                <p>Sim! No <strong>Plano Business</strong> você pode gerenciar até 5 localizações diferentes. Cada loja pode criar ofertas independentemente.</p>
-              </div>
-              <div className="faq-item">
-                <h5><FaChartLine className="me-2" />Vocês cobram comissão sobre as vendas?</h5>
-                <p>Atualmente <strong>não cobramos comissão</strong> sobre vendas ou resgates de ofertas. Você paga apenas a assinatura mensal ou recursos avulsos.</p>
-              </div>
-              <div className="faq-item">
-                <h5><FaArrowUp className="me-2" />Posso fazer upgrade ou downgrade do plano?</h5>
-                <p>Sim! Você pode mudar de plano a qualquer momento. No upgrade, cobramos apenas a diferença proporcional. No downgrade, o crédito é usado no próximo mês.</p>
-              </div>
-              <div className="faq-item">
-                <h5><FaTag className="me-2" />Existe trial gratuito dos planos pagos?</h5>
-                <p>Sim! Oferecemos <strong>14 dias grátis</strong> do Plano PRO para novos usuários. Não é necessário cartão de crédito para começar o trial.</p>
-              </div>
+      {/* BENEFITS */}
+      <section className="dt-section">
+        <div className="dt-container">
+          <div className="dt-section-header">
+            <span className="dt-section-tag">Vantagens</span>
+            <h2>Por que escolher o DescontOn?</h2>
+            <p>Tudo que voce precisa para impulsionar seu negocio</p>
+          </div>
+          <div className="dt-benefits-grid">
+            <div className="dt-benefit-card">
+              <div className="dt-benefit-icon"><FaBolt /></div>
+              <h4>Ofertas Relampago</h4>
+              <p>Descontos por tempo limitado com countdown que gera urgencia e atrai compradores.</p>
+            </div>
+            <div className="dt-benefit-card">
+              <div className="dt-benefit-icon"><FaTags /></div>
+              <h4>Categorizacao Inteligente</h4>
+              <p>10 categorias para organizar ofertas e facilitar a busca dos compradores.</p>
+            </div>
+            <div className="dt-benefit-card">
+              <div className="dt-benefit-icon"><FaMapMarkerAlt /></div>
+              <h4>Busca por Localizacao</h4>
+              <p>Mapa interativo com Google Maps para encontrar ofertas por proximidade.</p>
+            </div>
+            <div className="dt-benefit-card">
+              <div className="dt-benefit-icon"><FaChartBar /></div>
+              <h4>Analytics Completo</h4>
+              <p>Metricas de resgates, visualizacoes e engajamento para otimizar suas ofertas.</p>
+            </div>
+            <div className="dt-benefit-card">
+              <div className="dt-benefit-icon"><FaLock /></div>
+              <h4>Seguranca e LGPD</h4>
+              <p>Dados protegidos com Firebase, separacao de informacoes publicas e privadas.</p>
+            </div>
+            <div className="dt-benefit-card">
+              <div className="dt-benefit-icon"><FaHandshake /></div>
+              <h4>Comunidade Local</h4>
+              <p>Fortaleca o comercio da sua regiao conectando-se a uma rede de parceiros.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="benefits-section">
-        <div className="container">
-          <h2 className="text-center"><FaStar className="me-2" />Por que Escolher o <span className="notranslate">DescontOn</span>?</h2>
-          <div className="row">
-            <div className="col-md-6">
-              <div className="benefit-item">
-                <div className="benefit-icon"><FaBolt /></div>
-                <div className="benefit-text">Ofertas Relâmpago com Descontos Imperdíveis</div>
+      {/* FAQ */}
+      <section id="faq" className="dt-section dt-faq">
+        <div className="dt-container">
+          <div className="dt-section-header">
+            <span className="dt-section-tag">FAQ</span>
+            <h2>Perguntas Frequentes</h2>
+            <p>Tire suas duvidas sobre a plataforma</p>
+          </div>
+          <div className="dt-faq-list">
+            {faqs.map((faq, i) => (
+              <div key={i} className={`dt-faq-item ${openFaq === i ? 'open' : ''}`}>
+                <button className="dt-faq-question" onClick={() => toggleFaq(i)}>
+                  {faq.q}
+                  <FaChevronDown className="dt-faq-chevron" />
+                </button>
+                <div className="dt-faq-answer">
+                  <p>{faq.a}</p>
+                </div>
               </div>
-              <div className="benefit-item">
-                <div className="benefit-icon"><FaTags /></div>
-                <div className="benefit-text">Categorização Inteligente de Produtos</div>
-              </div>
-              <div className="benefit-item">
-                <div className="benefit-icon"><FaMapMarkerAlt /></div>
-                <div className="benefit-text">Busca por Localização e Proximidade</div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="benefit-item">
-                <div className="benefit-icon"><FaChartBar /></div>
-                <div className="benefit-text">Analytics e Métricas de Engajamento</div>
-              </div>
-              <div className="benefit-item">
-                <div className="benefit-icon"><FaLock /></div>
-                <div className="benefit-text">Segurança e Proteção de Dados</div>
-              </div>
-              <div className="benefit-item">
-                <div className="benefit-icon"><FaHandshake /></div>
-                <div className="benefit-text">Comunidade de Benefícios Mútuos</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <footer id="contact" className="footer">
-        <div className="container text-center">
-          <div className="row">
-            <div className="col-md-4">
-              <p><strong>&copy; 2026 <span className="notranslate">DescontOn</span></strong></p>
-              <p>Todos os direitos reservados.</p>
+      {/* FOOTER */}
+      <footer className="dt-footer">
+        <div className="dt-container">
+          <div className="dt-footer-grid">
+            <div className="dt-footer-brand">
+              <img src={logo} alt="DescontOn" style={{ height: 32 }} />
+              <p>Clube de vantagens que conecta pessoas e negocios atraves de ofertas e descontos exclusivos.</p>
             </div>
-            <div className="col-md-4">
-              <p><strong><FaClipboardList className="me-2" />Novidades</strong></p>
-              <Link to="/changelog" className="btn btn-outline-light btn-sm mt-2">
-                <FaClipboardList className="me-2" />Changelog
-              </Link>
+            <div className="dt-footer-col">
+              <h4>Produto</h4>
+              <a href="#features">Funcionalidades</a>
+              <a href="#pricing">Precos</a>
+              <a href="#faq">FAQ</a>
+              <Link to="/changelog">Changelog</Link>
             </div>
-            <div className="col-md-4">
-              <p><strong><FaEnvelope className="me-2" />Contato e Suporte</strong></p>
-              <p>suporte@desconton.com.br</p>
-              <Link to="/suporte" className="btn btn-outline-light btn-sm mt-2">
-                <FaTicketAlt className="me-2" />Central de Suporte
-              </Link>
+            <div className="dt-footer-col">
+              <h4>Suporte</h4>
+              <Link to="/suporte">Central de Suporte</Link>
+              <a href="mailto:clipfilme@gmail.com">
+                <FaEnvelope style={{ marginRight: 6, fontSize: '0.75rem' }} />
+                clipfilme@gmail.com
+              </a>
+              <Link to="/excluir-conta">Excluir Conta</Link>
+              <Link to="/privacidade">Politica de Privacidade</Link>
+            </div>
+            <div className="dt-footer-col">
+              <h4>Baixar App</h4>
+              <a href="https://play.google.com/store/apps/details?id=redeibelieve.app&hl=pt_BR" target="_blank" rel="noopener noreferrer">Google Play</a>
+              <a href="https://apps.apple.com/br/app/rede-i-believe-ofertas/id6754894996" target="_blank" rel="noopener noreferrer">App Store</a>
             </div>
           </div>
-          <hr style={{margin: '2rem 0', opacity: '0.3'}} />
-          <p className="mb-0">
-            <em><FaHeart className="me-2" style={{color: '#ff6b9d'}} />Desenvolvido com <FaHeart className="mx-1" style={{color: '#ff6b9d'}} /> para conectar pessoas e negócios através de vantagens exclusivas.</em>
-          </p>
+          <div className="dt-footer-bottom">
+            <p>&copy; 2026 DescontOn. Todos os direitos reservados.</p>
+            <p>Feito com dedicacao para o comercio local.</p>
+          </div>
         </div>
       </footer>
     </div>

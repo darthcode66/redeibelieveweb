@@ -329,7 +329,7 @@ function Support() {
                   <div className="contact-card">
                     <div className="contact-icon">📧</div>
                     <h4>Email</h4>
-                    <p>suporte@desconton.com.br</p>
+                    <p>clipfilme@gmail.com</p>
                     <small>Resposta em até 24 horas</small>
                   </div>
                 </div>
@@ -337,7 +337,7 @@ function Support() {
                   <div className="contact-card">
                     <div className="contact-icon">💬</div>
                     <h4>WhatsApp</h4>
-                    <p>(11) 99999-9999</p>
+                    <p>(19) 98920-7072</p>
                     <small>Seg à Sex, 9h às 18h</small>
                   </div>
                 </div>

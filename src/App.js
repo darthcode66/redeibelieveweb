@@ -4,6 +4,7 @@ import Home from './Home';
 import Support from './Support';
 import Changelog from './Changelog';
 import DeleteAccount from './DeleteAccount';
+import Privacy from './Privacy';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/suporte" element={<Support />} />
           <Route path="/changelog" element={<Changelog />} />
           <Route path="/excluir-conta" element={<DeleteAccount />} />
+          <Route path="/privacidade" element={<Privacy />} />
         </Routes>
       </div>
     </Router>
