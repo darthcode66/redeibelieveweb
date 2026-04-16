@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Support.css';
-import logo from './assets/logo_desconton.png';
+import logo from './assets/logo_inline.svg';
 
 function Support() {
   const [activeTab, setActiveTab] = useState('tickets');

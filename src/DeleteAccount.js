@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './DeleteAccount.css';
-import logo from './assets/logo_desconton.png';
+import logo from './assets/logo_inline.svg';
 import { Link } from 'react-router-dom';
 
 function DeleteAccount() {

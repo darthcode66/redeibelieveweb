@@ -385,6 +385,58 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========================================
+   APP SHOWCASE (screenshots carousel)
+   ======================================== */
+.dt-showcase {
+  background: var(--bg-deep);
+  padding: 60px 0 40px;
+  overflow: hidden;
+}
+
+.dt-showcase-track {
+  display: flex;
+  gap: 24px;
+  animation: scrollShowcase 30s linear infinite;
+  width: max-content;
+  padding: 0 24px;
+}
+
+.dt-showcase-item {
+  flex-shrink: 0;
+  width: 220px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dt-showcase-item:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: var(--shadow-glow);
+}
+
+.dt-showcase-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes scrollShowcase {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .dt-showcase-item {
+    width: 160px;
+  }
+  .dt-showcase {
+    padding: 40px 0 20px;
+  }
+}
+
+/* ========================================
    ABOUT SECTION
    ======================================== */
 .dt-about {

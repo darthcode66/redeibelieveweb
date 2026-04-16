@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import logo from './assets/logo_desconton.png';
+import logo from './assets/logo_inline.svg';
 import googlePlayBadge from './assets/google-play-badge.png';
 import appStoreBadge from './assets/app-store-badge.svg';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,12 @@ import {
   FaShoppingCart, FaStore, FaTruck, FaCheck, FaTimes, FaBars, FaTimes as FaClose,
   FaChevronDown, FaEnvelope, FaArrowRight
 } from 'react-icons/fa';
+import screen1 from './assets/screenshots/01.png';
+import screen2 from './assets/screenshots/02.png';
+import screen3 from './assets/screenshots/03.png';
+import screen4 from './assets/screenshots/04.png';
+import screen5 from './assets/screenshots/05.png';
+import screen6 from './assets/screenshots/06.png';
 
 function Home() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -96,6 +102,30 @@ function Home() {
           </div>
         </div>
       </header>
+
+      {/* APP SHOWCASE */}
+      <section className="dt-showcase">
+        <div className="dt-showcase-track">
+          {[
+            { img: screen1, label: "Descubra ofertas" },
+            { img: screen2, label: "Encontre no mapa" },
+            { img: screen3, label: "Resgate descontos" },
+            { img: screen4, label: "Explore lojas" },
+            { img: screen5, label: "Gerencie seu negócio" },
+            { img: screen6, label: "Crie ofertas" },
+            { img: screen1, label: "Descubra ofertas" },
+            { img: screen2, label: "Encontre no mapa" },
+            { img: screen3, label: "Resgate descontos" },
+            { img: screen4, label: "Explore lojas" },
+            { img: screen5, label: "Gerencie seu negócio" },
+            { img: screen6, label: "Crie ofertas" },
+          ].map((s, i) => (
+            <div className="dt-showcase-item" key={i}>
+              <img src={s.img} alt={s.label} />
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* ABOUT */}
       <section id="about" className="dt-section dt-about">
