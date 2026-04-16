@@ -76,7 +76,7 @@ function Home() {
             <a href="https://play.google.com/store/apps/details?id=redeibelieve.app&hl=pt_BR" target="_blank" rel="noopener noreferrer" className="dt-store-badge">
               <img src={googlePlayBadge} alt="Google Play" />
             </a>
-            <a href="https://apps.apple.com/br/app/rede-i-believe-ofertas/id6754894996" target="_blank" rel="noopener noreferrer" className="dt-store-badge">
+            <a href="https://apps.apple.com/br/app/desconton-ofertas-locais/id6754894996" target="_blank" rel="noopener noreferrer" className="dt-store-badge">
               <img src={appStoreBadge} alt="App Store" />
             </a>
           </div>
@@ -519,7 +519,7 @@ function Home() {
             <div className="dt-footer-col">
               <h4>Baixar App</h4>
               <a href="https://play.google.com/store/apps/details?id=redeibelieve.app&hl=pt_BR" target="_blank" rel="noopener noreferrer">Google Play</a>
-              <a href="https://apps.apple.com/br/app/rede-i-believe-ofertas/id6754894996" target="_blank" rel="noopener noreferrer">App Store</a>
+              <a href="https://apps.apple.com/br/app/desconton-ofertas-locais/id6754894996" target="_blank" rel="noopener noreferrer">App Store</a>
             </div>
           </div>
           <div className="dt-footer-bottom">

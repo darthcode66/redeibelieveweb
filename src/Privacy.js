@@ -32,7 +32,7 @@ function Privacy() {
                   Esta Política de Privacidade descreve como o <strong>DescontOn</strong> ("nós",
                   "nosso" ou "aplicativo") coleta, usa, armazena e compartilha informações pessoais
                   dos usuários do aplicativo móvel DescontOn e do site{' '}
-                  <a href="https://www.redeibelieve.com.br">www.redeibelieve.com.br</a>.
+                  <a href="https://www.desconton.com.br">www.desconton.com.br</a>.
                 </p>
                 <p>
                   Ao usar o DescontOn, você concorda com as práticas descritas nesta política.
@@ -179,7 +179,7 @@ function Privacy() {
                 <ul className="contact-list">
                   <li><strong>E-mail:</strong> <a href="mailto:clipfilme@gmail.com">clipfilme@gmail.com</a></li>
                   <li><strong>Telefone:</strong> +55 (19) 98920-7072</li>
-                  <li><strong>Site:</strong> <a href="https://www.redeibelieve.com.br">www.redeibelieve.com.br</a></li>
+                  <li><strong>Site:</strong> <a href="https://www.desconton.com.br">www.desconton.com.br</a></li>
                 </ul>
               </section>
 
